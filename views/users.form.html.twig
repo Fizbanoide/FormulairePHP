@@ -1,0 +1,62 @@
+<h2>Formulaire</h2>
+
+{% if user is defined %}
+<form method="post" name="formulaire" action="{{ url('users.save', {id: user.id}) }}">
+
+    <input type="hidden" name="id" value={{user.id}} />
+
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" value={{user.nom}} />
+
+    <label for="name">Prénom : </label>
+    <input type="text" name="prenom" value={{user.prenom}}  />
+
+
+    <label for="name">Adresse : </label>
+    <input type="text" name="adresse" value={{user.adresse}} />
+
+    <label for="name">Ville : </label>
+    <input type="text" name="ville" value={{user.ville}} />
+
+    <label for="name">Code postal : </label>
+    <input type="text" name="cp" value={{user.cp}} />
+
+
+    {% elseif param is defined %}
+<form method="post" name="formulaire" action="{{ url('users.save') }}">
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" value={{param.nom}} />
+
+    <label for="name">Prénom : </label>
+    <input type="text" name="prenom" value={{param.prenom}} />
+
+    <label for="name">Adresse : </label>
+    <input type="text" name="adresse" value={{param.adresse}} />
+
+    <label for="name">Ville : </label>
+    <input type="text" name="ville" value={{param.ville}} />
+
+    <label for="name">Code postal : </label>
+    <input type="text" name="cp" value={{param.cp}} />
+
+    {% else %}
+<form method="post" name="formulaire" action="{{ url('users.save') }}">
+    <label for="name">Nom : </label>
+    <input type="text" name="nom" />
+
+    <label for="name">Prénom : </label>
+    <input type="text" name="prenom" />
+
+    <label for="name">Adresse : </label>
+    <input type="text" name="adresse" />
+
+    <label for="name">Ville : </label>
+    <input type="text" name="ville" />
+
+    <label for="name">Code postal : </label>
+    <input type="text" name="cp" />
+    {% endif %}
+
+    <button type="submit">Envoyer</button>
+
+</form>
