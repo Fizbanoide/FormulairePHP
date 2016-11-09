@@ -42,10 +42,37 @@ class UserRepository
        $statement = $queryBuilder->execute();
        $usersData = $statement->fetchAll();
        foreach ($usersData as $userData) {
-           $userEntityList[$userData['id']] = new User($userData['id'], $userData['nom'], $userData['prenom'], $userData['adresse'], $userData['ville'], $userData['cp']);
+           $userEntityList[$userData['id']] = new User($userData['id'], $userData['lastname'], $userData['firstname'], $userData['arretMaison'], $userData['arretTravail']);
        }
 
        return $userEntityList;
+   }
+
+   public function getByName($firstName, $lastName)
+   {
+     $queryBuilder = $this->db->createQueryBuilder();
+     $queryBuilder
+         ->select('u.*')
+         ->from('users', 'u')
+         ->where(
+            $queryBuilder->expr()->andX(
+                $queryBuilder->expr()->eq('firstname', "'".$firstName."'"),
+                $queryBuilder->expr()->eq('lastname', "'".$lastName."'")
+            )
+         );
+
+     $statement = $queryBuilder->execute();
+     $userData = $statement->fetchAll();
+     $result = count($userData);
+     if($result == 0 || $result > 1){
+       return "Erreur de login!";
+     }
+     //var_dump($userData);die;
+     $user = new User($userData[0]['id'], $userData[0]['lastname'], $userData[0]['firstname'], $userData[0]['arretMaison'], $userData[0]['arretTravail']);
+     return json_encode($user->toArray());
+
+
+
    }
 
    /**
@@ -67,7 +94,7 @@ class UserRepository
        $statement = $queryBuilder->execute();
        $userData = $statement->fetchAll();
 
-       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom'], $userData[0]['adresse'], $userData[0]['ville'], $userData[0]['cp']);
+       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom'], $userData[0]['arretMaison'], $userData[0]['arretTravail']);
    }
 
     public function delete($id)
@@ -101,22 +128,16 @@ class UserRepository
             ->setParameter(':prenom', $parameters['prenom']);
         }
 
-        if ($parameters['adresse']) {
+        if ($parameters['arretMaison']) {
         	$queryBuilder
-        	->set('adresse', ':adresse')
-        	->setParameter(':adresse', $parameters['adresse']);
+        	->set('arretMaison', ':arretMaison')
+        	->setParameter(':arretMaison', $parameters['arretMaison']);
         }
 
-        if ($parameters['ville']) {
+        if ($parameters['arretTravail']) {
           $queryBuilder
-          ->set('ville', ':ville')
-          ->setParameter(':ville', $parameters['ville']);
-        }
-
-        if ($parameters['cp']) {
-          $queryBuilder
-          ->set('cp', ':cp')
-          ->setParameter(':cp', $parameters['cp']);
+          ->set('arretTravail', ':arretTravail')
+          ->setParameter(':arretTravail', $parameters['arretTravail']);
         }
 
         $statement = $queryBuilder->execute();
@@ -131,16 +152,15 @@ class UserRepository
               array(
                 'nom' => ':nom',
                 'prenom' => ':prenom',
-                'adresse' => ':adresse',
-                'ville' => ':ville',
-                'cp' => ':cp',
+                'arretMaison' => ':arretMaison',
+                'arretTravail' => ':arretTravail',
               )
           )
           ->setParameter(':nom', $parameters['nom'])
           ->setParameter(':prenom', $parameters['prenom'])
-          ->setParameter(':adresse', $parameters['adresse'])
-          ->setParameter(':ville', $parameters['ville'])
-          ->setParameter(':cp', $parameters['cp']);
+          ->setParameter(':arretMaison', $parameters['arretMaison'])
+          ->setParameter(':arretTravail', $parameters['arretTravail']);
+
         $statement = $queryBuilder->execute();
     }
 }

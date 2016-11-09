@@ -33,22 +33,11 @@ class IndexController
     public function saveAction(Request $request, Application $app)
     {
         $parameters = $request->request->all();
-        if (is_numeric($parameters['cp']))
-        {
           if ($parameters['id']) {
               $user = $app['repository.user']->update($parameters);
           } else {
               $user = $app['repository.user']->insert($parameters);
           }
-
-        } else
-        {
-            echo 'Le code postal doit etre en chiffre'; 
-            return $app['twig']->render('users.form.html.twig', array('param' => $parameters));
-          }
-
-
-
 
         return $app->redirect($app['url_generator']->generate('users.list'));
     }
@@ -56,6 +45,15 @@ class IndexController
     public function newAction(Request $request, Application $app)
     {
         return $app['twig']->render('users.form.html.twig');
+    }
+
+    public function authAction(Request $request, Application $app)
+    {
+      $parameters = $request->request->all();
+      //var_dump($parameters);die;
+      $result = $app['repository.user']->getByName($parameters['firstname'], $parameters['lastname']);
+      //var_dump($result);die;
+      return $result;
     }
 
 

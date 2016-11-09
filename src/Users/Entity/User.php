@@ -10,20 +10,17 @@ class User
 
     protected $prenom;
 
-    protected $adresse;
+    protected $arretMaison;
 
-    protected $ville;
+    protected $arretTravail;
 
-    protected $cp;
-
-    public function __construct($id, $nom, $prenom, $adresse, $ville, $cp)
+    public function __construct($id, $nom, $prenom, $arretMaison, $arretTravail)
     {
         $this->id = $id;
         $this->prenom = $prenom;
         $this->nom = $nom;
-        $this->adresse = $adresse;
-        $this->ville = $ville;
-        $this->cp = $cp;
+        $this->arretMaison = $arretMaison;
+        $this->arretTravail = $arretTravail;
     }
 
     public function setId($id)
@@ -41,19 +38,14 @@ class User
         $this->prenom = $prenom;
     }
 
-    public function setAdresse($adresse)
+    public function setArretMaison($arretMaison)
     {
-    	$this->adresse = $adresse;
+    	$this->arretMaison = $arretMaison;
     }
 
-    public function setVille($ville)
+    public function setArretTravail($arretTravail)
     {
-      $this->ville = $ville;
-    }
-
-    public function setCp($cp)
-    {
-      $this->cp = $cp;
+      $this->arretTravail = $arretTravail;
     }
 
     public function getId()
@@ -69,19 +61,14 @@ class User
         return $this->nom;
     }
 
-    public function getAdresse()
+    public function getArretMaison()
     {
-    	return $this->adresse;
+    	return $this->arretMaison;
     }
 
-    public function getVille()
+    public function getArretTravail()
     {
-      return $this->ville;
-    }
-
-    public function getCp()
-    {
-      return $this->cp;
+      return $this->arretTravail;
     }
 
     public function toArray()
@@ -90,9 +77,8 @@ class User
         $array['id'] = $this->id;
         $array['nom'] = $this->nom;
         $array['prenom'] = $this->prenom;
-        $array['adresse'] = $this->adresse;
-        $array['ville'] = $this->ville;
-        $array['cp'] = $this->cp;
+        $array['arretMaison'] = $this->arretMaison;
+        $array['arretTravail'] = $this->arretTravail;
 
         return $array;
     }

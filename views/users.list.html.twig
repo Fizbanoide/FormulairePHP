@@ -8,9 +8,8 @@
     <th>ID</th>
     <th>NOM</th>
     <th>PRENOM</th>
-    <th>ADRESSE</th>
-    <th>VILLE</th>
-    <th>CODE POSTAL</th>
+    <th>ARRET MAISON</th>
+    <th>ARRET TRAVAIL</th>
     <th>ACTION</th>
   </tr>
 </thead>
@@ -20,9 +19,8 @@
      <td>{{user.id}}</td>
      <td>{{user.nom}}</td>
      <td>{{user.prenom}}</td>
-     <td>{{user.adresse}}</td>
-     <td>{{user.ville}}</td>
-     <td>{{user.cp}}</td>
+     <td>{{user.arretMaison}}</td>
+     <td>{{user.arretTravail}}</td>
      <td>
        <form method="post" name="formulaire" action="{{ url('users.delete', {id: user.id}) }}">
             <button type="submit">Supprimer</button>
@@ -37,3 +35,16 @@
 {% endfor %}
 </tbdoy>
 </table>
+
+
+<form method="post" name="authentification" action="{{ url('users.auth') }}">
+  <label for="name">Nom : </label>
+  <input type="text" name="lastname" />
+
+  <label for="name">Prénom : </label>
+  <input type="text" name="firstname" />
+
+  <button type="submit">Authentification</button>
+
+
+</form>

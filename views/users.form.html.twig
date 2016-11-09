@@ -12,14 +12,11 @@
     <input type="text" name="prenom" value={{user.prenom}}  />
 
 
-    <label for="name">Adresse : </label>
-    <input type="text" name="adresse" value={{user.adresse}} />
+    <label for="name">Arret Maison: </label>
+    <input type="text" name="arretMaison" value={{user.arretMaison}} />
 
-    <label for="name">Ville : </label>
-    <input type="text" name="ville" value={{user.ville}} />
-
-    <label for="name">Code postal : </label>
-    <input type="text" name="cp" value={{user.cp}} />
+    <label for="name">Arret Travail : </label>
+    <input type="text" name="arretTravail" value={{user.arretTravail}} />
 
 
     {% elseif param is defined %}
@@ -30,14 +27,11 @@
     <label for="name">Prénom : </label>
     <input type="text" name="prenom" value={{param.prenom}} />
 
-    <label for="name">Adresse : </label>
-    <input type="text" name="adresse" value={{param.adresse}} />
+    <label for="name">Arret Maison : </label>
+    <input type="text" name="arretMaison" value={{param.arretMaison}} />
 
-    <label for="name">Ville : </label>
-    <input type="text" name="ville" value={{param.ville}} />
-
-    <label for="name">Code postal : </label>
-    <input type="text" name="cp" value={{param.cp}} />
+    <label for="name">Arret Travail : </label>
+    <input type="text" name="arretTravail" value={{param.arretTravail}} />
 
     {% else %}
 <form method="post" name="formulaire" action="{{ url('users.save') }}">
@@ -47,14 +41,11 @@
     <label for="name">Prénom : </label>
     <input type="text" name="prenom" />
 
-    <label for="name">Adresse : </label>
-    <input type="text" name="adresse" />
+    <label for="name">Arret Maison : </label>
+    <input type="text" name="arretMaison" />
 
-    <label for="name">Ville : </label>
-    <input type="text" name="ville" />
-
-    <label for="name">Code postal : </label>
-    <input type="text" name="cp" />
+    <label for="name">Arret Travail : </label>
+    <input type="text" name="arretTravail" />
     {% endif %}
 
     <button type="submit">Envoyer</button>
