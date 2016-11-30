@@ -36,6 +36,24 @@ class StopRepository
         return json_encode($stopEntityList);
     }
 
+    public function getAllFromLine($parameters)
+    {
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('s.*')
+            ->from('stops', 's')
+            ->where('line = :line')
+            ->setParameter(':line', $parameters['line']);
+
+        $statement = $queryBuilder->execute();
+        $stopsData = $statement->fetchAll();
+        foreach ($stopsData as $stopData) {
+            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+        }
+
+        return json_encode($stopEntityList);
+    }
+
     public function getStopByName($parameters)
     {
       $queryBuilder = $this->db->createQueryBuilder();

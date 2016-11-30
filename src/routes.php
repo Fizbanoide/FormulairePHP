@@ -7,5 +7,6 @@ $app->post('/users/delete/{id}', 'App\Users\Controller\IndexController::deleteAc
 $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->bind('users.save');
 $app->get('/users/auth', 'App\Users\Controller\IndexController::authAction')->bind('users.auth');
 
-$app->get('/stops/list', 'App\Stops\Controller\IndexController::listAction')->bind('stops.list');
+$app->get('/stops/listall', 'App\Stops\Controller\IndexController::listAll')->bind('stops.listAll');
 $app->get('/stops/getbyname', 'App\Stops\Controller\IndexController::getStop')->bind('stops.get');
+$app->get('/stops/listallfromline', 'App\Stops\Controller\IndexController::listAllFromLine')->bind('stops.listAllFromLine');
