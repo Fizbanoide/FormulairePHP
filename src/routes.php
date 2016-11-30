@@ -8,3 +8,4 @@ $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->b
 $app->get('/users/auth', 'App\Users\Controller\IndexController::authAction')->bind('users.auth');
 
 $app->get('/stops/list', 'App\Stops\Controller\IndexController::listAction')->bind('stops.list');
+$app->get('/stops/getbyname', 'App\Stops\Controller\IndexController::getStop')->bind('stops.get');

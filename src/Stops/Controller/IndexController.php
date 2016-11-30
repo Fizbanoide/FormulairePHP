@@ -14,5 +14,14 @@ class IndexController
       return $stops;
   }
 
+  public function getStop(Request $request, Application $app)
+  {
+    $parameters['name'] = $request->get('name');
+
+    $stop = $app['repository.stop']->getStopByName($parameters);
+
+    return $stop;
+  }
+
 
 }

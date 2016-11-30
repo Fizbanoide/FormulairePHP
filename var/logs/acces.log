@@ -482,3 +482,7 @@
 127.0.0.1 - - [30/Nov/2016:15:44:26 +0100] "GET /index.php/stops/list HTTP/1.1" 200 180
 127.0.0.1 - - [30/Nov/2016:15:45:29 +0100] "GET /index.php/stops/list HTTP/1.1" 200 170
 127.0.0.1 - - [30/Nov/2016:15:45:46 +0100] "GET /index.php/stops/list HTTP/1.1" 200 371
+127.0.0.1 - - [30/Nov/2016:16:01:01 +0100] "GET /index.php/stops/getbyname?name=Providence HTTP/1.1" 200 208
+127.0.0.1 - - [30/Nov/2016:16:03:06 +0100] "GET /index.php/stops/getbyname?name=Providence HTTP/1.1" 200 317
+127.0.0.1 - - [30/Nov/2016:16:03:30 +0100] "GET /index.php/stops/getbyname?name=Providence HTTP/1.1" 200 164
+127.0.0.1 - - [30/Nov/2016:16:03:43 +0100] "GET /index.php/stops/getbyname?name=Providence HTTP/1.1" 200 44
