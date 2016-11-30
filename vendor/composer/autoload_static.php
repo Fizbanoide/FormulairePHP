@@ -37,6 +37,9 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
             'App\\Users\\Repository\\' => 21,
             'App\\Users\\Entity\\' => 17,
             'App\\Users\\Controller\\' => 21,
+            'App\\Stops\\Repository\\' => 21,
+            'App\\Stops\\Entity\\' => 17,
+            'App\\Stops\\Controller\\' => 21,
         ),
     );
 
@@ -100,6 +103,18 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
         'App\\Users\\Controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Users/Controller',
+        ),
+        'App\\Stops\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Stops/Repository',
+        ),
+        'App\\Stops\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Stops/Entity',
+        ),
+        'App\\Stops\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Stops/Controller',
         ),
     );
 

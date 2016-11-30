@@ -20,18 +20,7 @@ class UserRepository
         $this->db = $db;
     }
 
-   /**
-    * Returns a collection of users.
-    *
-    * @param int $limit
-    *   The number of users to return.
-    * @param int $offset
-    *   The number of users to skip.
-    * @param array $orderBy
-    *   Optionally, the order by info, in the $column => $direction format.
-    *
-    * @return array A collection of users, keyed by user id.
-    */
+   
    public function getAll()
    {
        $queryBuilder = $this->db->createQueryBuilder();
@@ -155,15 +144,40 @@ class UserRepository
                 'firstname' => ':prenom',
                 'arretMaison' => ':arretMaison',
                 'arretTravail' => ':arretTravail',
+                'login' => ':login',
+                'password' => ':password'
               )
           )
           ->setParameter(':nom', $parameters['nom'])
           ->setParameter(':prenom', $parameters['prenom'])
           ->setParameter(':arretMaison', $parameters['arretMaison'])
-          ->setParameter(':arretTravail', $parameters['arretTravail']);
+          ->setParameter(':arretTravail', $parameters['arretTravail'])
+          ->setParameter(':login', $parameters['login'])
+          ->setParameter(':password', $parameters['password']);
 
         $statement = $queryBuilder->execute();
 
         return 0;
+    }
+
+    public function checkAuth($parameters)
+    {
+      $queryBuilder = $this->db->createQueryBuilder();
+      $queryBuilder
+        ->select('u.*')
+        ->from('users', 'u')
+        ->where('login = :login')
+        ->setParameter(':login', $parameters['login'])
+        ->andwhere('password = :password')
+        ->setParameter(':password', $parameters['password']);
+
+      $statement = $queryBuilder->execute();
+      $userData = $statement->fetchAll();
+
+      if(count($userData) != 0) {
+        return json_encode($userData);
+      }
+
+      return "Erreur dans l'authentification";
     }
 }

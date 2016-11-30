@@ -21,4 +21,7 @@ return array(
     'App\\Users\\Repository\\' => array($baseDir . '/src/Users/Repository'),
     'App\\Users\\Entity\\' => array($baseDir . '/src/Users/Entity'),
     'App\\Users\\Controller\\' => array($baseDir . '/src/Users/Controller'),
+    'App\\Stops\\Repository\\' => array($baseDir . '/src/Stops/Repository'),
+    'App\\Stops\\Entity\\' => array($baseDir . '/src/Stops/Entity'),
+    'App\\Stops\\Controller\\' => array($baseDir . '/src/Stops/Controller'),
 );

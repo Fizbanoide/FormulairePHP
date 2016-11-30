@@ -48,6 +48,8 @@ class IndexController
         $parameters['prenom'] = $request->get('prenom');
         $parameters['arretMaison'] = $request->get('arretMaison');
         $parameters['arretTravail'] = $request->get('arretTravail');
+        $parameters['login'] = $request->get('login');
+        $parameters['password'] = $request->get('password');
 
         $user = $app['repository.user']->insert($parameters);
 
@@ -56,9 +58,10 @@ class IndexController
 
     public function authAction(Request $request, Application $app)
     {
-      $parameters = $request->request->all();
+      $parameters['login'] = $request->get('login');
+      $parameters['password'] = $request->get('password');
       //var_dump($parameters);die;
-      $result = $app['repository.user']->getByName($parameters['firstname'], $parameters['lastname']);
+      $result = $app['repository.user']->checkAuth($parameters);
       //var_dump($result);die;
       return $result;
     }

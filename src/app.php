@@ -16,3 +16,7 @@ $app->register(new TwigServiceProvider(), array(
 $app['repository.user'] = function ($app) {
     return new App\Users\Repository\UserRepository($app['db']);
 };
+
+$app['repository.stop'] = function ($app) {
+    return new App\Stops\Repository\StopRepository($app['db']);
+};
