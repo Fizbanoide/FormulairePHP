@@ -11,7 +11,7 @@ class IndexController
     {
         $users = $app['repository.user']->getAll();
 
-        return $app['twig']->render('users.list.html.twig', array('users' => $users));
+        return $users;
     }
 
     public function deleteAction(Request $request, Application $app)
@@ -44,7 +44,14 @@ class IndexController
 
     public function newAction(Request $request, Application $app)
     {
-        return $app['twig']->render('users.form.html.twig');
+        $parameters['nom'] = $request->get('nom');
+        $parameters['prenom'] = $request->get('prenom');
+        $parameters['arretMaison'] = $request->get('arretMaison');
+        $parameters['arretTravail'] = $request->get('arretTravail');
+
+        $user = $app['repository.user']->insert($parameters);
+
+        return $user;
     }
 
     public function authAction(Request $request, Application $app)

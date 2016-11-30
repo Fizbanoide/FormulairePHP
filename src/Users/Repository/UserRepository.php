@@ -42,10 +42,10 @@ class UserRepository
        $statement = $queryBuilder->execute();
        $usersData = $statement->fetchAll();
        foreach ($usersData as $userData) {
-           $userEntityList[$userData['id']] = new User($userData['id'], $userData['lastname'], $userData['firstname'], $userData['arretMaison'], $userData['arretTravail']);
+           $userEntityList[$userData['id']] = (new User($userData['id'], $userData['lastname'], $userData['firstname'], $userData['arretMaison'], $userData['arretTravail']))->toArray();
        }
 
-       return $userEntityList;
+       return json_encode($userEntityList);
    }
 
    public function getByName($firstName, $lastName)
@@ -146,12 +146,13 @@ class UserRepository
     public function insert($parameters)
     {
         $queryBuilder = $this->db->createQueryBuilder();
+
         $queryBuilder
           ->insert('users')
           ->values(
               array(
-                'nom' => ':nom',
-                'prenom' => ':prenom',
+                'lastname' =>':nom',
+                'firstname' => ':prenom',
                 'arretMaison' => ':arretMaison',
                 'arretTravail' => ':arretTravail',
               )
@@ -162,5 +163,7 @@ class UserRepository
           ->setParameter(':arretTravail', $parameters['arretTravail']);
 
         $statement = $queryBuilder->execute();
+
+        return 0;
     }
 }
