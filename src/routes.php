@@ -13,3 +13,4 @@ $app->get('/stops/listallfromline', 'App\Stops\Controller\IndexController::listA
 $app->get('/stops/itinary', 'App\Stops\Controller\IndexController::itinary')->bind('stops.get');
 
 $app->get('/hours/listall', 'App\Hours\Controller\IndexController::listAll')->bind('hours.listAll');
+$app->get('/hours/listallfromstop', 'App\Hours\Controller\IndexController::listAllFromStop')->bind('hours.listAllFromStop');

@@ -75,6 +75,7 @@ class StopRepository
       $arret1 = json_decode($this->getStopByName($parameters), true);
       $parameters['name'] = $parameters['name2'];
       $arret2 = json_decode($this->getStopByName($parameters), true);
+      $way = 0;
 
       $queryBuilder = $this->db->createQueryBuilder();
       $queryBuilder
@@ -88,6 +89,7 @@ class StopRepository
 
       if($arret1[0]['id'] > $arret2[0]['id']) {
         arsort($stopsData);
+        $way = 1;
       }
 
       foreach ($stopsData as $stopData) {
@@ -95,10 +97,12 @@ class StopRepository
           if($stopData['name'] == $parameters['name1'])
           {
             $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+            $stopidfirst = $stopData['id'];
           }
           else if($stopData['name'] == $parameters['name2'])
           {
             $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+            $stopidlast = $stopData['id'];
             break;
           }
           else if($stopEntityList)
@@ -107,6 +111,19 @@ class StopRepository
           }
       }
 
+      $queryBuilder
+          ->select('h.*')
+          ->from('hours', 'h')
+          ->where('hour > :hour')
+          ->setParameter(':hour', $parameters['hour'])
+          ->andwhere('id_stop = :idstop')
+          ->setParameter(':idstop', $stopidfirst)
+          ->andwhere('way = :way')
+          ->setParameter(':way', $way);
+
+      $statement = $queryBuilder->execute();
+      $hoursData = $statement->fetch();
+      print_r($hoursData);
       return json_encode($stopEntityList);
     }
 

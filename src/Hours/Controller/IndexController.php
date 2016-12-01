@@ -14,5 +14,13 @@ class IndexController
       return $hours;
   }
 
+  public function listAllFromStop(Request $request, Application $app)
+  {
+      $parameters['name'] = $request->get('name');
+      $hours = $app['repository.hour']->getAllFromStop($parameters);
+
+      return $hours;
+  }
+
 
 }

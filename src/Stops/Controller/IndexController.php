@@ -36,6 +36,7 @@ class IndexController
     $parameters['name1'] = $request->get('name1');
     $parameters['name2'] = $request->get('name2');
     $parameters['line'] = $request->get('line');
+    $parameters['hour'] = $request->get('hour');
 
     $stops = $app['repository.stop']->getItinary($parameters);
 
