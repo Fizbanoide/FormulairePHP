@@ -10,3 +10,4 @@ $app->get('/users/auth', 'App\Users\Controller\IndexController::authAction')->bi
 $app->get('/stops/listall', 'App\Stops\Controller\IndexController::listAll')->bind('stops.listAll');
 $app->get('/stops/getbyname', 'App\Stops\Controller\IndexController::getStop')->bind('stops.get');
 $app->get('/stops/listallfromline', 'App\Stops\Controller\IndexController::listAllFromLine')->bind('stops.listAllFromLine');
+$app->get('/stops/itinary', 'App\Stops\Controller\IndexController::itinary')->bind('stops.get');

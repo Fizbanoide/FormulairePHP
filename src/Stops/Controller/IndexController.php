@@ -31,5 +31,17 @@ class IndexController
       return $stops;
   }
 
+  public function itinary(Request $request, Application $app)
+  {
+    $parameters['name1'] = $request->get('name1');
+    $parameters['name2'] = $request->get('name2');
+    $parameters['line'] = $request->get('line');
+
+    $stops = $app['repository.stop']->getItinary($parameters);
+
+    return $stops;
+
+  }
+
 
 }
