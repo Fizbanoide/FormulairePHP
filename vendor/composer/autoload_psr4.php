@@ -24,4 +24,7 @@ return array(
     'App\\Stops\\Repository\\' => array($baseDir . '/src/Stops/Repository'),
     'App\\Stops\\Entity\\' => array($baseDir . '/src/Stops/Entity'),
     'App\\Stops\\Controller\\' => array($baseDir . '/src/Stops/Controller'),
+    'App\\Hours\\Repository\\' => array($baseDir . '/src/Hours/Repository'),
+    'App\\Hours\\Entity\\' => array($baseDir . '/src/Hours/Entity'),
+    'App\\Hours\\Controller\\' => array($baseDir . '/src/Hours/Controller'),
 );

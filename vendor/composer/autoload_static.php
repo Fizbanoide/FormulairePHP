@@ -40,6 +40,9 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
             'App\\Stops\\Repository\\' => 21,
             'App\\Stops\\Entity\\' => 17,
             'App\\Stops\\Controller\\' => 21,
+            'App\\Hours\\Repository\\' => 21,
+            'App\\Hours\\Entity\\' => 17,
+            'App\\Hours\\Controller\\' => 21,
         ),
     );
 
@@ -115,6 +118,18 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
         'App\\Stops\\Controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Stops/Controller',
+        ),
+        'App\\Hours\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Hours/Repository',
+        ),
+        'App\\Hours\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Hours/Entity',
+        ),
+        'App\\Hours\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Hours/Controller',
         ),
     );
 
