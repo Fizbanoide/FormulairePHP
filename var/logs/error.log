@@ -821,3 +821,8 @@
 [Thu Dec 01 17:53:29.703962 2016] [:error] [pid 532] [client 127.0.0.1:52011] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
 [Thu Dec 01 17:53:29.704038 2016] [:error] [pid 532] [client 127.0.0.1:52011] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
 [Thu Dec 01 17:54:08.229171 2016] [:error] [pid 1842] [client 127.0.0.1:52013] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
+[Fri Dec 02 08:47:47.530070 2016] [:error] [pid 502] [client 127.0.0.1:49266] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
+[Fri Dec 02 08:47:47.546843 2016] [:error] [pid 502] [client 127.0.0.1:49266] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
+[Fri Dec 02 08:47:47.547829 2016] [:error] [pid 502] [client 127.0.0.1:49266] PHP Notice:  Array to string conversion in /Users/iem/Documents/Projects/PHP/vendor/doctrine/dbal/lib/Doctrine/DBAL/Driver/PDOStatement.php on line 67
+[Fri Dec 02 08:50:18.349862 2016] [:error] [pid 1942] [client 127.0.0.1:49271] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109
+[Fri Dec 02 08:50:18.349960 2016] [:error] [pid 1942] [client 127.0.0.1:49271] PHP Notice:  Undefined variable: stopEntityList in /Users/iem/Documents/Projects/PHP/src/Stops/Repository/StopRepository.php on line 109

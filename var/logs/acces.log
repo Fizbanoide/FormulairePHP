@@ -580,3 +580,9 @@
 127.0.0.1 - - [01/Dec/2016:17:53:16 +0100] "GET /index.php/stops/itinary?name1=Ferry&name2=Arbelles&line=21 HTTP/1.1" 200 515
 127.0.0.1 - - [01/Dec/2016:17:53:29 +0100] "GET /index.php/stops/itinary?name1=Ferry&name2=Arbelles&line=21&hour=10:29:00 HTTP/1.1" 200 617
 127.0.0.1 - - [01/Dec/2016:17:54:08 +0100] "GET /index.php/stops/itinary?name1=Providence&name2=Ferry&line=21&hour=10:29:00 HTTP/1.1" 200 499
+127.0.0.1 - - [01/Dec/2016:18:16:02 +0100] "GET /index.php/stops/list HTTP/1.1" 404 13371
+127.0.0.1 - - [01/Dec/2016:18:16:08 +0100] "GET /index.php/stops/listall HTTP/1.1" 200 371
+127.0.0.1 - - [02/Dec/2016:08:47:47 +0100] "GET /index.php/stops/itinary?name1=Ferry&name2=Arbelles&line=21&hour=10:29:00 HTTP/1.1" 200 900
+127.0.0.1 - - [02/Dec/2016:08:47:47 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+127.0.0.1 - - [02/Dec/2016:08:47:47 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+127.0.0.1 - - [02/Dec/2016:08:50:18 +0100] "GET /index.php/stops/itinary?name1=Ferry&name2=Arbelles&line=21&hour=10:29:00 HTTP/1.1" 200 719

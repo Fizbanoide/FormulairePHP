@@ -122,8 +122,24 @@ class StopRepository
           ->setParameter(':way', $way);
 
       $statement = $queryBuilder->execute();
-      $hoursData = $statement->fetch();
-      print_r($hoursData);
+      $hoursDepartData = $statement->fetch();
+      print_r($hoursDepartData);
+
+      $queryBuilder
+          ->select('h.*')
+          ->from('hours', 'h')
+          ->where('hour > :hour')
+          ->setParameter(':hour', $hoursDepartData['hour'])
+          ->andwhere('id_stop = :idstop')
+          ->setParameter(':idstop', $stopidlast)
+          ->andwhere('way = :way')
+          ->setParameter(':way', $way);
+
+      $statement = $queryBuilder->execute();
+      $hoursArriveeData = $statement->fetch();
+      print_r($hoursArriveeData);
+
+
       return json_encode($stopEntityList);
     }
 
