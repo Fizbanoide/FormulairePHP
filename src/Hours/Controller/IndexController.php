@@ -21,7 +21,7 @@ class IndexController
 
   public function listAllFromStop(Request $request, Application $app)
   {
-      $parameters['name'] = $request->get('name');
+      $parameters['idArret'] = $request->get('idArret');
       $hoursData = $app['repository.hour']->getAllFromStop($parameters);
 
       foreach ($hoursData as $hourData) {

@@ -40,8 +40,8 @@ class HourRepository
         $queryBuilder
             ->select('s.*')
             ->from('stops', 's')
-            ->where('name = :name')
-            ->setParameter(':name', $parameters['name']);
+            ->where('id = :id')
+            ->setParameter(':id', $parameters['idArret']);
 
         $statement = $queryBuilder->execute();
         $stopData = $statement->fetchAll();

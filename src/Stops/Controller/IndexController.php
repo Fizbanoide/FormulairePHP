@@ -23,9 +23,9 @@ class IndexController
 
   public function getStop(Request $request, Application $app)
   {
-    $parameters['name'] = $request->get('name');
+    $parameters['id'] = $request->get('id');
 
-    $stop = $app['repository.stop']->getStopByName($parameters);
+    $stop = $app['repository.stop']->getStopById($parameters);
 
     if(!$stops){
       $error = array('message' => 'The stops were not found.');
