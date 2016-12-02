@@ -9,17 +9,26 @@ class IndexController
 {
   public function listAll(Request $request, Application $app)
   {
-      $hours = $app['repository.hour']->getAll();
+      $hoursData = $app['repository.hour']->getAll();
 
+      foreach ($hoursData as $hourData) {
+          $hourEntityList[$hourData['id']] = (new Hour($hourData['id'], $hourData['id_stop'], $hourData['id_line'], $hourData['way'], $hourData['hour']))->toArray();
+      }
+
+      return json_encode($hourEntityList);
       return $hours;
   }
 
   public function listAllFromStop(Request $request, Application $app)
   {
       $parameters['name'] = $request->get('name');
-      $hours = $app['repository.hour']->getAllFromStop($parameters);
+      $hoursData = $app['repository.hour']->getAllFromStop($parameters);
 
-      return $hours;
+      foreach ($hoursData as $hourData) {
+          $hourEntityList[$hourData['id']] = (new Hour($hourData['id'], $hourData['id_stop'], $hourData['id_line'], $hourData['way'], $hourData['hour']))->toArray();
+      }
+
+      return json_encode($hourEntityList);
   }
 
 

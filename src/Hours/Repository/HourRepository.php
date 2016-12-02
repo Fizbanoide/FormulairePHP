@@ -29,11 +29,9 @@ class HourRepository
 
         $statement = $queryBuilder->execute();
         $hoursData = $statement->fetchAll();
-        foreach ($hoursData as $hourData) {
-            $hourEntityList[$hourData['id']] = (new Hour($hourData['id'], $hourData['id_stop'], $hourData['id_line'], $hourData['way'], $hourData['hour']))->toArray();
-        }
 
-        return json_encode($hourEntityList);
+        return $hoursData;
+
     }
 
     public function getAllFromStop($parameters)
@@ -47,7 +45,7 @@ class HourRepository
 
         $statement = $queryBuilder->execute();
         $stopData = $statement->fetchAll();
-        
+
         $queryBuilder
             ->select('h.*')
             ->from('hours', 'h')
@@ -56,11 +54,8 @@ class HourRepository
 
         $statement = $queryBuilder->execute();
         $hoursData = $statement->fetchAll();
-        foreach ($hoursData as $hourData) {
-            $hourEntityList[$hourData['id']] = (new Hour($hourData['id'], $hourData['id_stop'], $hourData['id_line'], $hourData['way'], $hourData['hour']))->toArray();
-        }
 
-        return json_encode($hourEntityList);
+        return $hoursData;
     }
 
 }

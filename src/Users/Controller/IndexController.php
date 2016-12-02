@@ -9,9 +9,13 @@ class IndexController
 {
     public function listAction(Request $request, Application $app)
     {
-        $users = $app['repository.user']->getAll();
+        $usersData = $app['repository.user']->getAll();
 
-        return $users;
+        foreach ($usersData as $userData) {
+            $userEntityList[$userData['id']] = (new User($userData['id'], $userData['lastname'], $userData['firstname'], $userData['arretMaison'], $userData['arretTravail']))->toArray();
+        }
+
+        return json_encode($userEntityList);
     }
 
     public function deleteAction(Request $request, Application $app)
@@ -25,9 +29,15 @@ class IndexController
     public function editAction(Request $request, Application $app)
     {
         $parameters = $request->attributes->all();
-        $user = $app['repository.user']->getByName($parameters['name']);
+        $userData = $app['repository.user']->getByName($parameters['name']);
 
-        return $user;
+        $result = count($userData);
+        if($result == 0 || $result > 1){
+          return "Erreur de login!";
+        }
+        //var_dump($userData);die;
+        $user = new User($userData[0]['id'], $userData[0]['lastname'], $userData[0]['firstname'], $userData[0]['arretMaison'], $userData[0]['arretTravail']);
+        return json_encode($user->toArray());
     }
 
     public function saveAction(Request $request, Application $app)
@@ -61,9 +71,14 @@ class IndexController
       $parameters['login'] = $request->get('login');
       $parameters['password'] = $request->get('password');
       //var_dump($parameters);die;
-      $result = $app['repository.user']->checkAuth($parameters);
+      $userData = $app['repository.user']->checkAuth($parameters);
+
+      if(count($userData) != 0) {
+        return json_encode($userData);
+      }
+
+      return "Erreur dans l'authentification";
       //var_dump($result);die;
-      return $result;
     }
 
 

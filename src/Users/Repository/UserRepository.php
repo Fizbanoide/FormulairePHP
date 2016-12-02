@@ -30,11 +30,9 @@ class UserRepository
 
        $statement = $queryBuilder->execute();
        $usersData = $statement->fetchAll();
-       foreach ($usersData as $userData) {
-           $userEntityList[$userData['id']] = (new User($userData['id'], $userData['lastname'], $userData['firstname'], $userData['arretMaison'], $userData['arretTravail']))->toArray();
-       }
 
-       return json_encode($userEntityList);
+       return $usersData;
+
    }
 
    public function getByName($firstName, $lastName)
@@ -52,15 +50,8 @@ class UserRepository
 
      $statement = $queryBuilder->execute();
      $userData = $statement->fetchAll();
-     $result = count($userData);
-     if($result == 0 || $result > 1){
-       return "Erreur de login!";
-     }
-     //var_dump($userData);die;
-     $user = new User($userData[0]['id'], $userData[0]['lastname'], $userData[0]['firstname'], $userData[0]['arretMaison'], $userData[0]['arretTravail']);
-     return json_encode($user->toArray());
 
-
+     return $userData;
 
    }
 
@@ -152,7 +143,6 @@ class UserRepository
 
         $statement = $queryBuilder->execute();
 
-        return 0;
     }
 
     public function checkAuth($parameters)
@@ -169,10 +159,7 @@ class UserRepository
       $statement = $queryBuilder->execute();
       $userData = $statement->fetchAll();
 
-      if(count($userData) != 0) {
-        return json_encode($userData);
-      }
+      return $userData;
 
-      return "Erreur dans l'authentification";
     }
 }
