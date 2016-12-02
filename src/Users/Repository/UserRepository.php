@@ -20,7 +20,7 @@ class UserRepository
         $this->db = $db;
     }
 
-   
+
    public function getAll()
    {
        $queryBuilder = $this->db->createQueryBuilder();
@@ -72,19 +72,6 @@ class UserRepository
     *
     * @return array A collection of users, keyed by user id.
     */
-   public function getById($id)
-   {
-       $queryBuilder = $this->db->createQueryBuilder();
-       $queryBuilder
-           ->select('u.*')
-           ->from('users', 'u')
-           ->where('id = ?')
-           ->setParameter(0, $id);
-       $statement = $queryBuilder->execute();
-       $userData = $statement->fetchAll();
-
-       return new User($userData[0]['id'], $userData[0]['nom'], $userData[0]['prenom'], $userData[0]['arretMaison'], $userData[0]['arretTravail']);
-   }
 
     public function delete($id)
     {
@@ -95,6 +82,14 @@ class UserRepository
           ->setParameter(':id', $id);
 
         $statement = $queryBuilder->execute();
+        $userData = $statement->fetchAll();
+
+        if(count($userData) == 0) {
+          return "Cette utilisateur n'existe pas";
+        }
+
+
+      }
     }
 
     public function update($parameters)

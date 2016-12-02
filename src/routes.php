@@ -8,9 +8,10 @@ $app->post('/users/save', 'App\Users\Controller\IndexController::saveAction')->b
 $app->get('/users/auth', 'App\Users\Controller\IndexController::authAction')->bind('users.auth');
 
 $app->get('/stops/listall', 'App\Stops\Controller\IndexController::listAll')->bind('stops.listAll');
-$app->get('/stops/getbyname', 'App\Stops\Controller\IndexController::getStop')->bind('stops.get');
+$app->get('/stops/getbyid', 'App\Stops\Controller\IndexController::getStopById')->bind('stops.getStopById');
 $app->get('/stops/listallfromline', 'App\Stops\Controller\IndexController::listAllFromLine')->bind('stops.listAllFromLine');
-$app->get('/stops/itinary', 'App\Stops\Controller\IndexController::itinary')->bind('stops.get');
+$app->get('/stops/itinary', 'App\Stops\Controller\IndexController::itinary')->bind('stops.itinary');
+$app->get('/stops/gethour', 'App\Stops\Controller\IndexController::getHour')->bind('stops.gethour');
 
 $app->get('/hours/listall', 'App\Hours\Controller\IndexController::listAll')->bind('hours.listAll');
 $app->get('/hours/listallfromstop', 'App\Hours\Controller\IndexController::listAllFromStop')->bind('hours.listAllFromStop');

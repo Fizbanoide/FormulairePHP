@@ -4,6 +4,8 @@ namespace App\Stops\Repository;
 
 use App\Stops\Entity\Stop;
 use Doctrine\DBAL\Connection;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * User repository.
@@ -29,11 +31,9 @@ class StopRepository
 
         $statement = $queryBuilder->execute();
         $stopsData = $statement->fetchAll();
-        foreach ($stopsData as $stopData) {
-            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-        }
 
-        return json_encode($stopEntityList);
+        return $stopsData;
+
     }
 
     public function getAllFromLine($parameters)
@@ -47,83 +47,61 @@ class StopRepository
 
         $statement = $queryBuilder->execute();
         $stopsData = $statement->fetchAll();
-        foreach ($stopsData as $stopData) {
-            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-        }
 
-        return json_encode($stopEntityList);
+        return ($stopsData);
+
     }
 
-    public function getStopByName($parameters)
+    public function getStopById($parameters)
     {
       $queryBuilder = $this->db->createQueryBuilder();
       $queryBuilder
         ->select('s.*')
         ->from('stops', 's')
-        ->where('name = :name')
-        ->setParameter(':name', $parameters['name']);
+        ->where('id = :id')
+        ->setParameter(':id', $parameters['id']);
 
       $statement = $queryBuilder->execute();
       $stopData = $statement->fetchAll();
 
-      return json_encode($stopData);
+      return $stopData;
     }
 
     public function getItinary($parameters)
     {
-      $parameters['name'] = $parameters['name1'];
-      $arret1 = json_decode($this->getStopByName($parameters), true);
-      $parameters['name'] = $parameters['name2'];
-      $arret2 = json_decode($this->getStopByName($parameters), true);
-      $way = 0;
+
 
       $queryBuilder = $this->db->createQueryBuilder();
       $queryBuilder
           ->select('s.*')
           ->from('stops', 's')
           ->where('line = :line')
-          ->setParameter(':line', $parameters['line']);
+          ->setParameter(':line', $parameters['ligne']);
 
       $statement = $queryBuilder->execute();
       $stopsData = $statement->fetchAll();
 
-      if($arret1[0]['id'] > $arret2[0]['id']) {
-        arsort($stopsData);
-        $way = 1;
-      }
+      return $stopsData;
 
-      foreach ($stopsData as $stopData) {
+    }
 
-          if($stopData['name'] == $parameters['name1'])
-          {
-            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-            $stopidfirst = $stopData['id'];
-          }
-          else if($stopData['name'] == $parameters['name2'])
-          {
-            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-            $stopidlast = $stopData['id'];
-            break;
-          }
-          else if($stopEntityList)
-          {
-            $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-          }
-      }
-
+    public function getHour($parameters)
+    {
+      $queryBuilder = $this->db->createQueryBuilder();
       $queryBuilder
           ->select('h.*')
           ->from('hours', 'h')
           ->where('hour > :hour')
-          ->setParameter(':hour', $parameters['hour'])
+          ->setParameter(':hour', $parameters['heure'])
           ->andwhere('id_stop = :idstop')
-          ->setParameter(':idstop', $stopidfirst)
+          ->setParameter(':idstop', $parameters['idArretDepart'])
           ->andwhere('way = :way')
-          ->setParameter(':way', $way);
+          ->setParameter(':way', $parameters['sens']);
 
       $statement = $queryBuilder->execute();
       $hoursDepartData = $statement->fetch();
-      print_r($hoursDepartData);
+
+      $result[] = $hoursDepartData;
 
       $queryBuilder
           ->select('h.*')
@@ -131,16 +109,16 @@ class StopRepository
           ->where('hour > :hour')
           ->setParameter(':hour', $hoursDepartData['hour'])
           ->andwhere('id_stop = :idstop')
-          ->setParameter(':idstop', $stopidlast)
+          ->setParameter(':idstop', $parameters['idArretArrivee'])
           ->andwhere('way = :way')
-          ->setParameter(':way', $way);
+          ->setParameter(':way', $parameters['sens']);
 
       $statement = $queryBuilder->execute();
       $hoursArriveeData = $statement->fetch();
-      print_r($hoursArriveeData);
 
+      $result [] = $hoursArriveeData;
 
-      return json_encode($stopEntityList);
+      return ($result);
     }
 
 }

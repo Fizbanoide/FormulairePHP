@@ -17,17 +17,17 @@ class IndexController
     public function deleteAction(Request $request, Application $app)
     {
         $parameters = $request->attributes->all();
-        $app['repository.user']->delete($parameters['id']);
+        $user = $app['repository.user']->delete($parameters['id']);
 
-        return $app->redirect($app['url_generator']->generate('users.list'));
+        return $user;
     }
 
     public function editAction(Request $request, Application $app)
     {
         $parameters = $request->attributes->all();
-        $user = $app['repository.user']->getById($parameters['id']);
+        $user = $app['repository.user']->getByName($parameters['name']);
 
-        return $app['twig']->render('users.form.html.twig', array('user' => $user));
+        return $user;
     }
 
     public function saveAction(Request $request, Application $app)

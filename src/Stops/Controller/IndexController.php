@@ -4,6 +4,7 @@ namespace App\Stops\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use App\Stops\Entity\Stop;
 
 class IndexController
 {
@@ -11,7 +12,13 @@ class IndexController
   {
       $stops = $app['repository.stop']->getAll();
 
-      return $stops;
+      if(!$stops){
+        $error = array('message' => 'The stops were not found.');
+
+        return $app->json($error, 404);
+      }
+
+      return $app->json($stops);
   }
 
   public function getStop(Request $request, Application $app)
@@ -20,7 +27,19 @@ class IndexController
 
     $stop = $app['repository.stop']->getStopByName($parameters);
 
-    return $stop;
+    if(!$stops){
+      $error = array('message' => 'The stops were not found.');
+
+      return $app->json($error, 404);
+    }
+
+    foreach ($stop as $stopData) {
+        $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+    }
+
+
+    return json_encode($stopEntityList);
+
   }
 
   public function listAllFromLine(Request $request, Application $app)
@@ -28,21 +47,79 @@ class IndexController
       $parameters['line'] = $request->get('line');
       $stops = $app['repository.stop']->getAllFromLine($parameters);
 
-      return $stops;
+      if(!$stops){
+        $error = array('message' => 'The line was not found.');
+
+        return $app->json($error, 404);
+      }
+
+      foreach ($stops as $stopData) {
+          $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+      }
+
+      return json_encode($stopEntityList);
   }
 
   public function itinary(Request $request, Application $app)
   {
-    $parameters['name1'] = $request->get('name1');
-    $parameters['name2'] = $request->get('name2');
-    $parameters['line'] = $request->get('line');
-    $parameters['hour'] = $request->get('hour');
+    $parameters['idArretDepart'] = $request->get('idArretDepart');
+    $parameters['idArretArrivee'] = $request->get('idArretArrivee');
+    $parameters['ligne'] = $request->get('ligne');
 
-    $stops = $app['repository.stop']->getItinary($parameters);
 
-    return $stops;
+    $stopsData = $app['repository.stop']->getItinary($parameters);
+
+    $parameters['id'] = $parameters['idArretDepart'];
+    $arret1 = $app['repository.stop']->getStopById($parameters);
+
+    $parameters['id'] = $parameters['idArretArrivee'];
+    $arret2 = $app['repository.stop']->getStopById($parameters);
+
+
+    if($arret1[0]['id'] > $arret2[0]['id']) {
+      arsort($stopsData);
+    }
+
+    foreach ($stopsData as $stopData) {
+
+        if($stopData['id'] == $parameters['idArretDepart'])
+        {
+          $stopEntityList[] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+          $stopidfirst = $stopData['id'];
+        }
+        else if($stopData['id'] == $parameters['idArretArrivee'])
+        {
+          $stopEntityList[] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+          $stopidlast = $stopData['id'];
+          break;
+        }
+        else if($stopEntityList)
+        {
+          $stopEntityList[] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
+        }
+    }
+
+    return json_encode($stopEntityList);
 
   }
 
+  public function getHour(Request $request, Application $app)
+  {
+    $parameters['idArretDepart'] = $request->get('idArretDepart');
+    $parameters['idArretArrivee'] = $request->get('idArretArrivee');
+    $parameters['heure'] = $request->get('heure');
+    $parameters['sens'] = 0;
+
+    if($parameters['idArretDepart'] > $parameters['idArretArrivee'])
+    {
+      $parameters['sens'] = 1;
+    }
+
+    $hours = $app['repository.stop']->getHour($parameters);
+    $result['depart'] = $hours[0]['hour'];
+    $result['arrivee'] = $hours[1]['hour'];
+
+    return json_encode($result);
+  }
 
 }
