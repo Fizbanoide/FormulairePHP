@@ -22,7 +22,7 @@ class IndexController
     
     public function getLineFromId(Request $request, Application $app)
     {
-        $parameters = $request->request->all();
+        $parameters['id'] = $request->get('id');
         $line = $app['repository.line']->getLineFromId($parameters);
         
         return json_encode($line);
