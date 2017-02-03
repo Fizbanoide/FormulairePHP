@@ -78,10 +78,8 @@ class UserRepository
         if(count($userData) == 0) {
           return "Cette utilisateur n'existe pas";
         }
+    }
 
-
-      }
-    
 
     public function update($parameters)
     {
