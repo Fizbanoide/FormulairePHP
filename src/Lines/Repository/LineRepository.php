@@ -31,4 +31,20 @@ class LineRepository
        return $linesData;
 
    }
+   
+   public function getLineFromId($parameters)
+   {
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('*')
+           ->from('`lines`')
+           ->where('id = :id')
+           ->setParameter(':id', $parameters['id']);
+
+       $statement = $queryBuilder->execute();
+       $lineData = $statement->fetch();
+
+       return $lineData;
+
+   }
 }

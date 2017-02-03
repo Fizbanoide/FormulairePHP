@@ -19,3 +19,4 @@ $app->get('/hours/addhourtostop', 'App\Hours\Controller\IndexController::addHour
 $app->post('/addHourToStopPost', 'App\Hours\Controller\IndexController::addHourToStop')->bind('hours.addPost');
 
 $app->get('/lines/listall', 'App\Lines\Controller\IndexController::listAll')->bind('lines.list');
+$app->get('/lines/getfromid', 'App\Lines\Controller\IndexController::getLineFromId')->bind('lines.get');
