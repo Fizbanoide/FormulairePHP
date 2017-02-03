@@ -15,3 +15,7 @@ $app->get('/stops/gethour', 'App\Stops\Controller\IndexController::getHour')->bi
 
 $app->get('/hours/listall', 'App\Hours\Controller\IndexController::listAll')->bind('hours.listAll');
 $app->get('/hours/listallfromstop', 'App\Hours\Controller\IndexController::listAllFromStop')->bind('hours.listAllFromStop');
+$app->get('/hours/addhourtostop', 'App\Hours\Controller\IndexController::addHourToStop')->bind('hours.add');
+$app->post('/addHourToStopPost', 'App\Hours\Controller\IndexController::addHourToStop')->bind('hours.addPost');
+
+$app->get('/lines/listall', 'App\Lines\Controller\IndexController::listAll')->bind('lines.list');

@@ -4,6 +4,7 @@ namespace App\Users\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use App\Users\Entity\User;
 
 class IndexController
 {

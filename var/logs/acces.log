@@ -634,3 +634,12 @@
 127.0.0.1 - - [02/Dec/2016:14:46:05 +0100] "GET /index.php/stops/itinary?idArretDepart=8&idArretArrivee=3&ligne=21 HTTP/1.1" 200 276
 127.0.0.1 - - [02/Dec/2016:14:46:20 +0100] "GET /index.php/stops/itinary?idArretDepart=8&idArretArrivee=3&ligne=21 HTTP/1.1" 200 252
 127.0.0.1 - - [02/Dec/2016:14:46:31 +0100] "GET /index.php/stops/itinary?idArretDepart=3&idArretArrivee=8&ligne=21 HTTP/1.1" 200 586
+127.0.0.1 - - [31/Jan/2017:13:33:57 +0100] "GET / HTTP/1.1" 404 13331
+127.0.0.1 - - [31/Jan/2017:13:33:57 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+127.0.0.1 - - [31/Jan/2017:13:33:57 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+127.0.0.1 - - [31/Jan/2017:13:34:18 +0100] "GET /hours/addhourtostop HTTP/1.1" 404 217
+127.0.0.1 - - [31/Jan/2017:13:34:37 +0100] "GET /users/new HTTP/1.1" 404 207
+127.0.0.1 - - [31/Jan/2017:13:35:23 +0100] "GET /users/new HTTP/1.1" 404 207
+192.168.240.38 - - [31/Jan/2017:15:45:45 +0100] "GET /index.php/users/list HTTP/1.1" 404 13933
+192.168.240.38 - - [31/Jan/2017:15:45:45 +0100] "GET /favicon.ico HTTP/1.1" 404 209
+192.168.240.38 - - [31/Jan/2017:15:45:45 +0100] "GET /favicon.ico HTTP/1.1" 404 209

@@ -3,7 +3,13 @@
         "silex/silex": "~2.0",
         "twig/twig": "^1.24",
         "symfony/twig-bridge": "^3.1",
-         "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "symfony/intl": "^3.2",
+        "symfony/form": "^3.2",
+        "symfony/validator": "^3.2",
+        "symfony/config": "^3.2",
+        "symfony/translation": "^3.2",
+        "symfony/security": "^3.2"
     },
     "scripts": {
       "run": [
@@ -21,7 +27,10 @@
          "App\\Hours\\Controller\\": "src/Hours/Controller/",
          "App\\Hours\\Repository\\": "src/Hours/Repository/",
          "App\\Hours\\Entity\\": "src/Hours/Entity/",
-         "App\\Stops\\Entity\\": "src/Stops/Entity/"
+         "App\\Stops\\Entity\\": "src/Stops/Entity/",
+         "App\\Lines\\Repository\\": "src/Lines/Repository/",
+         "App\\Lines\\Entity\\": "src/Lines/Entity/",
+         "App\\Lines\\Controller\\": "src/Lines/Controller/"
        }
    }
 }
