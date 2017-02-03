@@ -18,7 +18,7 @@ class IndexController
             
         }
 
-        print(json_encode($lineEntityList));
+        print($lineEntityList[3]['terminuses']);
         return 1;
     }
 }
