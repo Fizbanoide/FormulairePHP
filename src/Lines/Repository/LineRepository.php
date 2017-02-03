@@ -22,8 +22,8 @@ class LineRepository
    {
        $queryBuilder = $this->db->createQueryBuilder();
        $queryBuilder
-           ->select('l.*')
-           ->from('lines', 'l');
+           ->select('u.*')
+           ->from('lines', 'u');
 
        $statement = $queryBuilder->execute();
        $linesData = $statement->fetchAll();
