@@ -13,8 +13,9 @@ class IndexController
         $linesData = $app['repository.line']->getAll();
 
         foreach ($linesData as $lineData) {
-            print($lineData['id']);
+            
             $lineEntityList[$lineData['id']] = (new Line($lineData['id'], $lineData['number'], $lineData['terminuses'], $lineData['way']))->toArray();
+            print($lineEntityList[$lineData['id']]);
         }
 
         return json_encode($lineEntityList);
