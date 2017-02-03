@@ -15,7 +15,7 @@ class IndexController
         foreach ($linesData as $lineData) {
             
             $lineEntityList[$lineData['id']] = (new Line($lineData['id'], $lineData['number'], $lineData['terminuses'], $lineData['way']))->toArray();
-            print($lineEntityList[$lineData['id']]['id']);
+            
         }
 
         return json_encode($lineEntityList);
