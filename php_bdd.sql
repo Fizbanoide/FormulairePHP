@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `mvc` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `mvc`;
 -- MySQL dump 10.13  Distrib 5.7.12, for osx10.9 (x86_64)
 --
 -- Host: localhost    Database: mvc
@@ -29,7 +27,7 @@ CREATE TABLE `hours` (
   `id_line_stop` int(11) unsigned DEFAULT NULL,
   `hour` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +36,7 @@ CREATE TABLE `hours` (
 
 LOCK TABLES `hours` WRITE;
 /*!40000 ALTER TABLE `hours` DISABLE KEYS */;
+INSERT INTO `hours` VALUES (1,1,'08:14:00'),(2,2,'08:14:00'),(3,3,'08:16:00'),(4,4,'08:17:00'),(5,5,'08:18:00'),(6,6,'08:19:00'),(7,7,'08:20:00'),(8,8,'08:21:00'),(9,1,'10:33:00'),(10,1,'11:33:00'),(11,1,'12:33:00'),(12,1,'13:33:00'),(13,1,'15:33:00');
 /*!40000 ALTER TABLE `hours` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +56,7 @@ CREATE TABLE `line_stop` (
   KEY `id_line_idx` (`id_line`),
   CONSTRAINT `id_line` FOREIGN KEY (`id_line`) REFERENCES `lines` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_stop` FOREIGN KEY (`id_stop`) REFERENCES `stops` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,6 +65,7 @@ CREATE TABLE `line_stop` (
 
 LOCK TABLES `line_stop` WRITE;
 /*!40000 ALTER TABLE `line_stop` DISABLE KEYS */;
+INSERT INTO `line_stop` VALUES (1,10,1),(2,10,2),(3,10,3),(4,10,4),(5,10,5),(6,10,6),(7,10,7),(8,10,8),(9,9,8),(10,9,7),(11,9,5),(12,9,4),(13,9,3),(14,9,2),(15,9,1);
 /*!40000 ALTER TABLE `line_stop` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,9 +79,10 @@ DROP TABLE IF EXISTS `lines`;
 CREATE TABLE `lines` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `number` int(11) DEFAULT NULL,
+  `terminuses` varchar(45) NOT NULL,
   `way` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,6 +91,7 @@ CREATE TABLE `lines` (
 
 LOCK TABLES `lines` WRITE;
 /*!40000 ALTER TABLE `lines` DISABLE KEYS */;
+INSERT INTO `lines` VALUES (1,1,'Oyards/Verlaine',0),(2,1,'Oyards/Verlaine',1),(3,2,'Norelan/Ainterexpo',0),(4,2,'Norelan/Ainterexpo',1),(5,3,'Péronnas blés d\'or/Alagnier',0),(6,3,'Péronnas blés d\'or/Alagnier',1),(7,4,'St Denis Collège/Clinique Convert',0),(8,4,'St Denis Collège/Clinique Convert',1),(9,21,'Peloux Gare/Sources',0),(10,21,'Peloux Gare/Sources',1);
 /*!40000 ALTER TABLE `lines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,4 +157,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-03  9:42:51
+-- Dump completed on 2017-02-03 11:18:06
