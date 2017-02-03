@@ -17,7 +17,7 @@ $lineEntityList =array();
             $lineEntityList[$lineData['id']] = (new Line($lineData['id'], $lineData['number'], $lineData['terminuses'], $lineData['way']))->toArray();
             
         }
-        var_dump(json_encode($lineEntityList));die;
+        var_dump($lineEntityList);die;
         return json_encode($lineEntityList);
     }
 }
