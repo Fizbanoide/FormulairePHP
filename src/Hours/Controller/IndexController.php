@@ -30,11 +30,7 @@ class IndexController
       $parameters['idArret'] = $request->get('idArret');
       $hoursData = $app['repository.hour']->getAllFromStop($parameters);
 
-      foreach ($hoursData as $hourData) {
-          $hourEntityList[$hourData['id']] = (new Hour($hourData['id'], $hourData['id_stop'], $hourData['id_line'], $hourData['way'], $hourData['hour']))->toArray();
-      }
-
-      return json_encode($hourEntityList);
+      return json_encode($hoursData);
   }
   
   public function addHourToStop(Request $request, Application $app)

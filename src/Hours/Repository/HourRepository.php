@@ -36,21 +36,11 @@ class HourRepository
 
     public function getAllFromStop($parameters)
     {
-        $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('s.*')
-            ->from('stops', 's')
-            ->where('id = :id')
-            ->setParameter(':id', $parameters['idArret']);
-
-        $statement = $queryBuilder->execute();
-        $stopData = $statement->fetchAll();
-
-        $queryBuilder
-            ->select('h.*')
-            ->from('hours', 'h')
-            ->where('id_stop = :idstop')
-            ->setParameter(':idstop', $stopData[0]['id']);
+            ->select('*')
+            ->from('hours')
+            ->where('id_line_stop = :idlinestop')
+            ->setParameter(':idlinestop', $parameters['id']);
 
         $statement = $queryBuilder->execute();
         $hoursData = $statement->fetchAll();
