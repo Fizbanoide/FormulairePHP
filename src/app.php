@@ -35,3 +35,7 @@ $app['repository.hour'] = function ($app) {
 $app['repository.line'] = function ($app) {
     return new App\Lines\Repository\LineRepository($app['db']);
 };
+
+$app['repository.linestop'] = function ($app) {
+    return new App\LineStop\Repository\LineStopRepository($app['db']);
+};

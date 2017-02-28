@@ -57,6 +57,12 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
             'App\\Stops\\Repository\\' => 21,
             'App\\Stops\\Entity\\' => 17,
             'App\\Stops\\Controller\\' => 21,
+            'App\\Lines\\Repository\\' => 21,
+            'App\\Lines\\Entity\\' => 17,
+            'App\\Lines\\Controller\\' => 21,
+            'App\\LineStop\\Repository\\' => 24,
+            'App\\LineStop\\Entity\\' => 20,
+            'App\\LineStop\\Controller\\' => 24,
             'App\\Hours\\Repository\\' => 21,
             'App\\Hours\\Entity\\' => 17,
             'App\\Hours\\Controller\\' => 21,
@@ -187,6 +193,30 @@ class ComposerStaticInit06697a60a9793591182adb7999abf064
         'App\\Stops\\Controller\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/Stops/Controller',
+        ),
+        'App\\Lines\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Lines/Repository',
+        ),
+        'App\\Lines\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Lines/Entity',
+        ),
+        'App\\Lines\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Lines/Controller',
+        ),
+        'App\\LineStop\\Repository\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/LineStop/Repository',
+        ),
+        'App\\LineStop\\Entity\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/LineStop/Entity',
+        ),
+        'App\\LineStop\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/LineStop/Controller',
         ),
         'App\\Hours\\Repository\\' => 
         array (

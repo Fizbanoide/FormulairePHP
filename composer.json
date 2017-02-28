@@ -30,7 +30,10 @@
          "App\\Stops\\Entity\\": "src/Stops/Entity/",
          "App\\Lines\\Repository\\": "src/Lines/Repository/",
          "App\\Lines\\Entity\\": "src/Lines/Entity/",
-         "App\\Lines\\Controller\\": "src/Lines/Controller/"
+         "App\\Lines\\Controller\\": "src/Lines/Controller/",
+         "App\\LineStop\\Repository\\": "src/LineStop/Repository/",
+         "App\\LineStop\\Entity\\": "src/LineStop/Entity/",
+         "App\\LineStop\\Controller\\": "src/LineStop/Controller/"
        }
    }
 }
