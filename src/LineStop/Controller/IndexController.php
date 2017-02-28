@@ -11,13 +11,8 @@ class IndexController
     public function listAll(Request $request, Application $app)
     {
         $linestopsData = $app['repository.linestop']->getAll();
-
-        foreach ($linestopsData as $linestopData) {
-            
-            $linestopEntityList[$linestopData['id']] = (new LineStop($linestopData['id'], $linestopData['id_line'], $linestopData['id_stop']))->toArray();          
-        }
         
-        return json_encode($linestopEntityList);
+        return json_encode($linestopData);
     }
     
     public function getStopsFromLine(Request $request, Application $app)
