@@ -31,13 +31,13 @@ class IndexController
         return json_encode($linestopsData);
     }
     
-    public function getLineStop(Request $request, Application $app)
+    public function getLineStopId(Request $request, Application $app)
     {
         $parameters['id_line'] = $request->get('idline');
         $parameters['id_stop'] = $request->get('idstop');
         
         $lineStop = $app['repository.linestop']->getLineStop($parameters);
         
-        return json_encode($lineStop);
+        return json_encode($lineStop['id']);
     }
 }

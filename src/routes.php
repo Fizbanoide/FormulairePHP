@@ -24,4 +24,4 @@ $app->get('/lines/getfromid', 'App\Lines\Controller\IndexController::getLineFrom
 $app->get('/linestop/listall', 'App\LineStop\Controller\IndexController::listAll')->bind('linestop.list');
 $app->get('/linestop/getstopsfromline', 'App\LineStop\Controller\IndexController::getStopsFromLine')->bind('line.list');
 $app->get('/linestop/getlinesfromstop', 'App\LineStop\Controller\IndexController::getLinesFromStop')->bind('stop.list');
-$app->get('/linestop/getlinestop', 'App\LineStop\Controller\IndexController::getLineStop')->bind('linestop.get');
+$app->get('/linestop/getlinestopid', 'App\LineStop\Controller\IndexController::getLineStopId')->bind('linestop.get');
