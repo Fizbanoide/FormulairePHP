@@ -36,6 +36,7 @@ class HourRepository
 
     public function getAllFromStop($parameters)
     {
+        $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
             ->select('*')
             ->from('hours')
