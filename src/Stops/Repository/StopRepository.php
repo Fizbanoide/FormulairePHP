@@ -93,10 +93,8 @@ class StopRepository
           ->from('hours', 'h')
           ->where('hour > :hour')
           ->setParameter(':hour', $parameters['heure'])
-          ->andwhere('id_stop = :idstop')
-          ->setParameter(':idstop', $parameters['idArretDepart'])
-          ->andwhere('way = :way')
-          ->setParameter(':way', $parameters['sens']);
+          ->andwhere('id_line_stop = :idlinestop')
+          ->setParameter(':idlinestop', $parameters['lineStopDepart']['id']);
 
       $statement = $queryBuilder->execute();
       $hoursDepartData = $statement->fetch();
@@ -108,14 +106,12 @@ class StopRepository
           ->from('hours', 'h')
           ->where('hour > :hour')
           ->setParameter(':hour', $hoursDepartData['hour'])
-          ->andwhere('id_stop = :idstop')
-          ->setParameter(':idstop', $parameters['idArretArrivee'])
-          ->andwhere('way = :way')
-          ->setParameter(':way', $parameters['sens']);
+          ->andwhere('id_line_stop = :idlinestop')
+          ->setParameter(':idlinestop', $parameters['lineStopArrivee']['id']);
 
       $statement = $queryBuilder->execute();
       $hoursArriveeData = $statement->fetch();
-
+       
       $result [] = $hoursArriveeData;
 
       return ($result);

@@ -105,17 +105,15 @@ class IndexController
 
   public function getHour(Request $request, Application $app)
   {
-    $parameters['idArretDepart'] = $request->get('idArretDepart');
-    $parameters['idArretArrivee'] = $request->get('idArretArrivee');
-    $parameters['heure'] = $request->get('heure');
-    $parameters['sens'] = 0;
+    $parameters['id_stop'] = $request->get('idArretDepart');
+    $parameters['id_line'] = $request->get('idLine');
+    $toResult['lineStopDepart'] = $app['repository.linestop']->getLineStop($parameters);
+    $parameters['id_stop'] = $request->get('idArretArrivee');
+    
+    $toResult['lineStopArrivee'] = $app['repository.linestop']->getLineStop($parameters);
+    $toResult['heure'] = $request->get('heure');
 
-    if($parameters['idArretDepart'] > $parameters['idArretArrivee'])
-    {
-      $parameters['sens'] = 1;
-    }
-
-    $hours = $app['repository.stop']->getHour($parameters);
+    $hours = $app['repository.stop']->getHour($toResult);
     $result['depart'] = $hours[0]['hour'];
     $result['arrivee'] = $hours[1]['hour'];
 
