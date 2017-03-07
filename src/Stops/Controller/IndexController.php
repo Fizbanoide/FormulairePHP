@@ -53,11 +53,7 @@ class IndexController
         return $app->json($error, 404);
       }
 
-      foreach ($stops as $stopData) {
-          $stopEntityList[$stopData['id']] = (new Stop($stopData['id'], $stopData['name'], $stopData['line']))->toArray();
-      }
-
-      return json_encode($stopEntityList);
+      return json_encode($stops);
   }
 
   public function itinary(Request $request, Application $app)
