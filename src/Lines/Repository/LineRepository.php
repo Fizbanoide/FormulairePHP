@@ -72,7 +72,7 @@ class LineRepository
            ->setParameter(':idline', $parameters['lineid']);
            
            $statement = $queryBuilder->execute();
-           $result = $statement->fetchAll();
+           $stopsData = $statement->fetchAll();
        }
        else
        {
