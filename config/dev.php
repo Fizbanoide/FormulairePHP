@@ -10,9 +10,9 @@ $app['debug'] = true;
 // Doctrine (db)
 $app['db.options'] = array(
     'driver' => 'pdo_mysql',
-    'host' => '127.0.0.1',
+    'host' => 'localhost',
     'port' => '3306',
     'dbname' => 'mvc',
     'user' => 'root',
-    'password' => '',
+    'password' => 'Xxring0starXX35',
 );
