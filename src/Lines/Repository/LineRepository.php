@@ -86,7 +86,21 @@ class LineRepository
            ->setParameter(':idline', $parameters['lineid']);
            
            $statement = $queryBuilder->execute();
-           $result = $statement->fetchAll();
+           $stopsData = $statement->fetchAll();
+       }
+       
+       $result = [];
+       foreach($stopsData as $stopData)
+       {
+            $queryBuilder = $this->db->createQueryBuilder();
+            $queryBuilder
+           ->select('*')
+           ->from('`stops`')
+           ->where('id = :id')
+           ->setParameter(':id', $stopData['id_stop']);
+           
+           $statement = $queryBuilder->execute();
+           $result[] = $statement->fetch();
        }
 
        return $result;
