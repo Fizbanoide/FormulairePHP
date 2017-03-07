@@ -22,4 +22,14 @@ class IndexController
         
         return json_encode($line);
     }
+    
+    public function getNextStopsFromLine(Request $request, Application $app)
+    {
+        $parameters['lineid'] = $request->get("line_id");
+        $parameters['stopid'] = $request->get("stop_id");
+        
+        $result = $app['repository.line']->getNextStopsFromLine($parameters);
+        
+        return json_encode($result);
+    }
 }

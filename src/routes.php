@@ -20,6 +20,7 @@ $app->post('/addHourToStopPost', 'App\Hours\Controller\IndexController::addHourT
 
 $app->get('/lines/listall', 'App\Lines\Controller\IndexController::listAll')->bind('lines.list');
 $app->get('/lines/getfromid', 'App\Lines\Controller\IndexController::getLineFromId')->bind('lines.get');
+$app->get('/lines/nextstops', 'App\Lines\Controller\IndexController::getNextStopsFromLine')->bind('lines.nextstops');
 
 $app->get('/linestop/listall', 'App\LineStop\Controller\IndexController::listAll')->bind('linestop.list');
 $app->get('/linestop/getstopsfromline', 'App\LineStop\Controller\IndexController::getStopsFromLine')->bind('line.list');

@@ -47,4 +47,48 @@ class LineRepository
        return $lineData;
 
    }
+   
+   public function getNextStopsFromLine($parameters)
+   {
+       $queryBuilder = $this->db->createQueryBuilder();
+       $queryBuilder
+           ->select('*')
+           ->from('`lines`')
+           ->where('id = :id')
+           ->setParameter(':id', $parameters['lineid']);
+
+       $statement = $queryBuilder->execute();
+       $lineData = $statement->fetch();
+       
+       if($lineData['way'] == 1)
+       {
+            $queryBuilder = $this->db->createQueryBuilder();
+            $queryBuilder
+           ->select('*')
+           ->from('`line_stop`')
+           ->where('id_stop > :id')
+           ->setParameter(':id', $parameters['stopid'])
+           ->andWhere('id_line = :idline')
+           ->setParameter(':idline', $parameters['lineid']);
+           
+           $statement = $queryBuilder->execute();
+           $result = $statement->fetchAll();
+       }
+       else
+       {
+            $queryBuilder = $this->db->createQueryBuilder();
+            $queryBuilder
+           ->select('*')
+           ->from('`line_stop`')
+           ->where('id_stop < :id')
+           ->setParameter(':id', $parameters['stopid'])
+           ->andWhere('id_line = :idline')
+           ->setParameter(':idline', $parameters['lineid']);
+           
+           $statement = $queryBuilder->execute();
+           $result = $statement->fetchAll();
+       }
+
+       return $result;
+   }
 }
