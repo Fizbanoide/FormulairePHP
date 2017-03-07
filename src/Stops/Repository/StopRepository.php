@@ -40,9 +40,9 @@ class StopRepository
     {
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('s.*')
-            ->from('stops', 's')
-            ->where('line = :line')
+            ->select('*')
+            ->from('line_stop')
+            ->where('id_line = :line')
             ->setParameter(':line', $parameters['line']);
 
         $statement = $queryBuilder->execute();
