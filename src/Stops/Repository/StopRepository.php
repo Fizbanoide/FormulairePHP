@@ -47,8 +47,24 @@ class StopRepository
 
         $statement = $queryBuilder->execute();
         $stopsData = $statement->fetchAll();
+        
+        $result = [];
+        foreach($stopsData as $stopData)
+        {
+            $queryBuilder = $this->db->createQueryBuilder();
+            $queryBuilder
+                ->select('*')
+                ->from('stops')
+                ->where('id = :id')
+                ->setParameter(':id', $stopData['id_stop']);
 
-        return ($stopsData);
+            $statement = $queryBuilder->execute();
+            $stop = $statement->fetch();
+            
+            array_push($result, $stop);
+        }
+
+        return ($result);
 
     }
 
